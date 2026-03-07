@@ -1,0 +1,21 @@
+{
+  "lastChecked": "2026-03-07T13:18:30Z",
+  "services": {
+    "ai.zxvmax.com": {"status": "up", "httpCode": 200},
+    "api.zxvmax.com": {"status": "up", "httpCode": 200},
+    "chat.zxvmax.com": {"status": "down", "httpCode": 403},
+    "deep-research.zxvmax.com": {"status": "up", "httpCode": 200},
+    "dify.zxvmax.com": {"status": "up", "httpCode": 200},
+    "img.zxvmax.com": {"status": "down", "httpCode": 403},
+    "nano-kit.zxvmax.com": {"status": "down", "httpCode": 403},
+    "netpulse.zxvmax.com": {"status": "down", "httpCode": 403},
+    "ui-prompt.zxvmax.com": {"status": "down", "httpCode": 403},
+    "waoo.zxvmax.com": {"status": "up", "httpCode": 200},
+    "backend-ai.zxvmax.com": {"status": "down", "httpCode": 403},
+    "claude.zxvmax.com": {"status": "up", "httpCode": 200},
+    "grok.zxvmax.com": {"status": "up", "httpCode": 200},
+    "grok2api.zxvmax.com": {"status": "down", "httpCode": 403},
+    "kagi2api.zxvmax.com": {"status": "down", "httpCode": 403},
+    "cpa.zxvmax.com": {"status": "down", "httpCode": 000000}
+  }
+}
