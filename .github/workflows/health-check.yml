@@ -1,0 +1,70 @@
+name: Service Health Check
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # 每天 UTC 2:00 (北京时间 10:00)
+  workflow_dispatch: # 手动触发
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check all services
+        run: |
+          echo '{' > status.json
+          echo '  "lastChecked": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'",' >> status.json
+          echo '  "services": {' >> status.json
+
+          SERVICES=(
+            "ai.zxvmax.com"
+            "api.zxvmax.com"
+            "chat.zxvmax.com"
+            "deep-research.zxvmax.com"
+            "dify.zxvmax.com"
+            "img.zxvmax.com"
+            "nano-kit.zxvmax.com"
+            "netpulse.zxvmax.com"
+            "ui-prompt.zxvmax.com"
+            "waoo.zxvmax.com"
+            "backend-ai.zxvmax.com"
+            "claude.zxvmax.com"
+            "grok.zxvmax.com"
+            "grok2api.zxvmax.com"
+            "kagi2api.zxvmax.com"
+            "cpa.zxvmax.com"
+          )
+
+          TOTAL=${#SERVICES[@]}
+          INDEX=0
+
+          for domain in "${SERVICES[@]}"; do
+            INDEX=$((INDEX + 1))
+            HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 -L "https://$domain" 2>/dev/null || echo "000")
+            if [ "$HTTP_CODE" = "200" ]; then
+              STATUS="up"
+            else
+              STATUS="down"
+            fi
+            COMMA=""
+            if [ $INDEX -lt $TOTAL ]; then
+              COMMA=","
+            fi
+            echo "    \"$domain\": {\"status\": \"$STATUS\", \"httpCode\": $HTTP_CODE}$COMMA" >> status.json
+            echo "$domain -> $HTTP_CODE ($STATUS)"
+          done
+
+          echo '  }' >> status.json
+          echo '}' >> status.json
+          cat status.json
+
+      - name: Commit and push status
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add status.json
+          git diff --cached --quiet || (git commit -m "chore: update service health status" && git push)
