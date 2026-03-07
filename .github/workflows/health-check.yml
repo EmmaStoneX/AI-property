@@ -29,36 +29,37 @@ jobs:
           node << 'SCRIPT'
           const { chromium } = require('playwright');
 
-          const services = [
-            "ai.zxvmax.com",
-            "api.zxvmax.com",
-            "chat.zxvmax.com",
-            "deep-research.zxvmax.com",
-            "dify.zxvmax.com",
-            "img.zxvmax.com",
-            "nano-kit.zxvmax.com",
-            "netpulse.zxvmax.com",
-            "ui-prompt.zxvmax.com",
-            "waoo.zxvmax.com",
-            "backend-ai.zxvmax.com",
-            "claude.zxvmax.com",
-            "grok.zxvmax.com",
-            "grok2api.zxvmax.com",
-            "kagi2api.zxvmax.com",
-            "cpa.zxvmax.com"
-          ];
+          // domain key -> actual check URL
+          const services = {
+            "ai.zxvmax.com": "https://ai.zxvmax.com",
+            "api.zxvmax.com": "https://api.zxvmax.com",
+            "chat.zxvmax.com": "https://chat.zxvmax.com",
+            "deep-research.zxvmax.com": "https://deep-research.zxvmax.com",
+            "dify.zxvmax.com": "https://dify.zxvmax.com",
+            "img.zxvmax.com": "https://img.zxvmax.com",
+            "nano-kit.zxvmax.com": "https://nano-kit.zxvmax.com",
+            "netpulse.zxvmax.com": "https://netpulse.zxvmax.com",
+            "ui-prompt.zxvmax.com": "https://ui-prompt.zxvmax.com",
+            "waoo.zxvmax.com": "https://waoo.zxvmax.com",
+            "backend-ai.zxvmax.com": "https://backend-ai.zxvmax.com",
+            "claude.zxvmax.com": "https://claude.zxvmax.com",
+            "grok.zxvmax.com": "https://grok.zxvmax.com",
+            "grok2api.zxvmax.com": "https://grok.zxvmax.com/lyy0709",
+            "kagi2api.zxvmax.com": "https://kagi2api.zxvmax.com",
+            "cpa.zxvmax.com": "https://cpa.zxvmax.site/management.html"
+          };
 
           (async () => {
             const browser = await chromium.launch();
             const results = {};
 
-            for (const domain of services) {
+            for (const [domain, checkUrl] of Object.entries(services)) {
               let status = 'down';
               let httpCode = 0;
               try {
                 const context = await browser.newContext();
                 const page = await context.newPage();
-                const response = await page.goto('https://' + domain, {
+                const response = await page.goto(checkUrl, {
                   waitUntil: 'domcontentloaded',
                   timeout: 30000
                 });
@@ -73,7 +74,7 @@ jobs:
                 httpCode = 0;
               }
               results[domain] = { status, httpCode };
-              console.log(domain + ' -> ' + httpCode + ' (' + status + ')');
+              console.log(domain + ' (' + checkUrl + ') -> ' + httpCode + ' (' + status + ')');
             }
 
             await browser.close();
