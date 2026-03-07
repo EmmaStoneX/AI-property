@@ -238,23 +238,23 @@ body {
 }
 
 .status-dot--up {
-  background-color: #8fbc8f;
+  background-color: #4caf50;
   animation: breathe-up 3s ease-in-out infinite;
 }
 
 .status-dot--down {
-  background-color: #c48a8a;
+  background-color: #e57373;
   animation: breathe-down 3s ease-in-out infinite;
 }
 
 @keyframes breathe-up {
-  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(143, 188, 143, 0); }
-  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(143, 188, 143, 0.35); }
+  0%, 100% { opacity: 0.7; box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(76, 175, 80, 0.3); }
 }
 
 @keyframes breathe-down {
-  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(196, 138, 138, 0); }
-  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(196, 138, 138, 0.35); }
+  0%, 100% { opacity: 0.7; box-shadow: 0 0 0 0 rgba(229, 115, 115, 0); }
+  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(229, 115, 115, 0.3); }
 }
 
 /* ========================================
