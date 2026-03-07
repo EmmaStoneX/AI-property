@@ -44,11 +44,12 @@ jobs:
 
           for domain in "${SERVICES[@]}"; do
             INDEX=$((INDEX + 1))
-            HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 -L "https://$domain" 2>/dev/null || echo "000")
-            if [ "$HTTP_CODE" = "200" ]; then
-              STATUS="up"
-            else
+            HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" "https://$domain" 2>/dev/null || echo "000")
+            # up = 收到任何有效 HTTP 响应（1xx-4xx），down = 连接失败(000) 或服务器错误(5xx)
+            if [ "$HTTP_CODE" = "000" ] || [ "${HTTP_CODE:0:1}" = "5" ]; then
               STATUS="down"
+            else
+              STATUS="up"
             fi
             COMMA=""
             if [ $INDEX -lt $TOTAL ]; then
