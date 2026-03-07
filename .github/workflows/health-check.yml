@@ -2,8 +2,8 @@ name: Service Health Check
 
 on:
   schedule:
-    - cron: '0 2 * * *'  # 每天 UTC 2:00 (北京时间 10:00)
-  workflow_dispatch: # 手动触发
+    - cron: '0 2 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,53 +14,79 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check all services
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright
         run: |
-          echo '{' > status.json
-          echo '  "lastChecked": "'$(date -u +"%Y-%m-%dT%H:%M:%SZ")'",' >> status.json
-          echo '  "services": {' >> status.json
+          npm init -y > /dev/null 2>&1
+          npm install playwright > /dev/null 2>&1
+          npx playwright install chromium > /dev/null 2>&1
 
-          SERVICES=(
-            "ai.zxvmax.com"
-            "api.zxvmax.com"
-            "chat.zxvmax.com"
-            "deep-research.zxvmax.com"
-            "dify.zxvmax.com"
-            "img.zxvmax.com"
-            "nano-kit.zxvmax.com"
-            "netpulse.zxvmax.com"
-            "ui-prompt.zxvmax.com"
-            "waoo.zxvmax.com"
-            "backend-ai.zxvmax.com"
-            "claude.zxvmax.com"
-            "grok.zxvmax.com"
-            "grok2api.zxvmax.com"
-            "kagi2api.zxvmax.com"
+      - name: Check all services with real browser
+        run: |
+          node << 'SCRIPT'
+          const { chromium } = require('playwright');
+
+          const services = [
+            "ai.zxvmax.com",
+            "api.zxvmax.com",
+            "chat.zxvmax.com",
+            "deep-research.zxvmax.com",
+            "dify.zxvmax.com",
+            "img.zxvmax.com",
+            "nano-kit.zxvmax.com",
+            "netpulse.zxvmax.com",
+            "ui-prompt.zxvmax.com",
+            "waoo.zxvmax.com",
+            "backend-ai.zxvmax.com",
+            "claude.zxvmax.com",
+            "grok.zxvmax.com",
+            "grok2api.zxvmax.com",
+            "kagi2api.zxvmax.com",
             "cpa.zxvmax.com"
-          )
+          ];
 
-          TOTAL=${#SERVICES[@]}
-          INDEX=0
+          (async () => {
+            const browser = await chromium.launch();
+            const results = {};
 
-          for domain in "${SERVICES[@]}"; do
-            INDEX=$((INDEX + 1))
-            HTTP_CODE=$(curl -o /dev/null -s -w "%{http_code}" --max-time 15 -L -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" "https://$domain" 2>/dev/null || echo "000")
-            if [ "$HTTP_CODE" = "200" ]; then
-              STATUS="up"
-            else
-              STATUS="down"
-            fi
-            COMMA=""
-            if [ $INDEX -lt $TOTAL ]; then
-              COMMA=","
-            fi
-            echo "    \"$domain\": {\"status\": \"$STATUS\", \"httpCode\": $HTTP_CODE}$COMMA" >> status.json
-            echo "$domain -> $HTTP_CODE ($STATUS)"
-          done
+            for (const domain of services) {
+              let status = 'down';
+              let httpCode = 0;
+              try {
+                const context = await browser.newContext();
+                const page = await context.newPage();
+                const response = await page.goto('https://' + domain, {
+                  waitUntil: 'domcontentloaded',
+                  timeout: 30000
+                });
+                httpCode = response ? response.status() : 0;
+                // up = 页面成功加载且不是 5xx
+                if (httpCode > 0 && httpCode < 500) {
+                  status = 'up';
+                }
+                await context.close();
+              } catch (e) {
+                status = 'down';
+                httpCode = 0;
+              }
+              results[domain] = { status, httpCode };
+              console.log(domain + ' -> ' + httpCode + ' (' + status + ')');
+            }
 
-          echo '  }' >> status.json
-          echo '}' >> status.json
-          cat status.json
+            await browser.close();
+
+            const output = {
+              lastChecked: new Date().toISOString(),
+              services: results
+            };
+
+            require('fs').writeFileSync('status.json', JSON.stringify(output, null, 2));
+            console.log('\nstatus.json written');
+          })();
+          SCRIPT
 
       - name: Commit and push status
         run: |
