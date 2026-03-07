@@ -203,6 +203,17 @@ body {
   color: var(--text-muted);
 }
 
+.tag--ready {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.tag--byk {
+  border-color: #ff9800;
+  color: #ff9800;
+  cursor: help;
+}
+
 .card__tags {
   display: flex;
   gap: 8px;
