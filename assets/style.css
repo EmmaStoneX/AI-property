@@ -194,6 +194,8 @@ body {
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--text-muted);
+  align-self: flex-start;
+  width: fit-content;
 }
 
 .tag--backend {
