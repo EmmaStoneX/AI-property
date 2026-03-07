@@ -190,7 +190,7 @@ body {
 .tag {
   display: inline-block;
   font-size: 11px;
-  padding: 4px 12px;
+  padding: 4px 16px;
   border: 1px solid var(--border);
   border-radius: 999px;
   color: var(--text-muted);
@@ -204,13 +204,13 @@ body {
 }
 
 .tag--ready {
-  border-color: #4caf50;
-  color: #4caf50;
+  border-color: #8bb89a;
+  color: #6a9b7a;
 }
 
 .tag--byk {
-  border-color: #ff9800;
-  color: #ff9800;
+  border-color: #bfa882;
+  color: #9c8764;
   cursor: help;
 }
 
