@@ -1,0 +1,17 @@
+# IDE & tools
+.kiro/
+.vscode/
+
+# Tests
+tests/
+playwright.config.ts
+playwright-report/
+test-results/
+
+# Node
+node_modules/
+package.json
+package-lock.json
+
+# Markdown docs
+*.md
