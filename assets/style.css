@@ -231,8 +231,8 @@ body {
   position: absolute;
   right: 16px;
   bottom: 16px;
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--border);
 }
@@ -248,13 +248,13 @@ body {
 }
 
 @keyframes breathe-up {
-  0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 rgba(143, 188, 143, 0); }
-  50% { opacity: 1; box-shadow: 0 0 6px 2px rgba(143, 188, 143, 0.4); }
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(143, 188, 143, 0); }
+  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(143, 188, 143, 0.35); }
 }
 
 @keyframes breathe-down {
-  0%, 100% { opacity: 0.4; box-shadow: 0 0 0 0 rgba(196, 138, 138, 0); }
-  50% { opacity: 1; box-shadow: 0 0 6px 2px rgba(196, 138, 138, 0.4); }
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(196, 138, 138, 0); }
+  50% { opacity: 1; box-shadow: 0 0 8px 3px rgba(196, 138, 138, 0.35); }
 }
 
 /* ========================================
