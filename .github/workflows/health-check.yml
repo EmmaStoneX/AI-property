@@ -28,6 +28,7 @@ jobs:
         run: |
           node << 'SCRIPT'
           const { chromium } = require('playwright');
+          const tls = require('tls');
 
           // domain key -> actual check URL
           const services = {
@@ -50,6 +51,29 @@ jobs:
             "spark.us.ci": "https://spark.us.ci"
           };
 
+          // domain key -> TLS check hostname (extract from check URL or use domain key)
+          function getTlsHost(domain, checkUrl) {
+            try { return new URL(checkUrl).hostname; } catch { return domain; }
+          }
+
+          function checkCert(hostname) {
+            return new Promise((resolve) => {
+              const sock = tls.connect(443, hostname, { servername: hostname, timeout: 10000 }, () => {
+                const cert = sock.getPeerCertificate();
+                sock.destroy();
+                if (cert && cert.valid_to) {
+                  const expiry = new Date(cert.valid_to);
+                  const days = Math.floor((expiry - Date.now()) / 86400000);
+                  resolve({ certDays: days, certExpiry: cert.valid_to });
+                } else {
+                  resolve({ certDays: -1, certExpiry: null });
+                }
+              });
+              sock.on('error', () => { sock.destroy(); resolve({ certDays: -1, certExpiry: null }); });
+              sock.on('timeout', () => { sock.destroy(); resolve({ certDays: -1, certExpiry: null }); });
+            });
+          }
+
           (async () => {
             const browser = await chromium.launch();
             const results = {};
@@ -65,7 +89,6 @@ jobs:
                   timeout: 30000
                 });
                 httpCode = response ? response.status() : 0;
-                // up = 页面成功加载且不是 5xx
                 if (httpCode > 0 && httpCode < 500) {
                   status = 'up';
                 }
@@ -74,8 +97,13 @@ jobs:
                 status = 'down';
                 httpCode = 0;
               }
-              results[domain] = { status, httpCode };
-              console.log(domain + ' (' + checkUrl + ') -> ' + httpCode + ' (' + status + ')');
+
+              // Check SSL cert
+              const tlsHost = getTlsHost(domain, checkUrl);
+              const cert = await checkCert(tlsHost);
+
+              results[domain] = { status, httpCode, ...cert };
+              console.log(domain + ' -> ' + httpCode + ' (' + status + ') cert: ' + cert.certDays + 'd');
             }
 
             await browser.close();

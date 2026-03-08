@@ -258,6 +258,20 @@ body {
   background-color: var(--border);
 }
 
+.cert-days {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.cert-days--warn {
+  color: #e57373;
+  opacity: 1;
+}
+
 .status-dot--up {
   background-color: #4caf50;
   animation: breathe-up 3s ease-in-out infinite;
