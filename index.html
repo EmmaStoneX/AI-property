@@ -227,19 +227,23 @@
           const domain = card.dataset.domain;
           const info = data.services && data.services[domain];
           if (!info) return;
+          // Create overlay container (not a flex item)
+          const overlay = document.createElement('div');
+          overlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none';
           // Status dot
           const dot = document.createElement('span');
           dot.className = 'status-dot status-dot--' + info.status;
           dot.title = info.status === 'up' ? '服务正常' : '服务异常 (' + info.httpCode + ')';
-          card.appendChild(dot);
+          overlay.appendChild(dot);
           // Cert days
           if (info.certDays != null && info.certDays >= 0) {
             const cert = document.createElement('span');
             cert.className = 'cert-days' + (info.certDays <= 14 ? ' cert-days--warn' : '');
             cert.textContent = info.certDays + 'd';
             cert.title = '证书剩余 ' + info.certDays + ' 天' + (info.certExpiry ? '（到期：' + info.certExpiry + '）' : '');
-            card.appendChild(cert);
+            overlay.appendChild(cert);
           }
+          card.appendChild(overlay);
         });
       })
       .catch(() => {});

@@ -204,24 +204,24 @@ body {
 }
 
 .tag--ready {
-  border-color: #8bb89a;
-  color: #6a9b7a;
+  border-color: var(--border);
+  color: var(--text-muted);
 }
 
 .tag--byk {
-  border-color: #bfa882;
-  color: #9c8764;
+  border-color: var(--border);
+  color: var(--text-muted);
   cursor: help;
 }
 
 .tag--serverless {
-  border-color: #a0b4c8;
-  color: #7a94ad;
+  border-color: var(--border);
+  color: var(--text-muted);
 }
 
 .tag--docker {
-  border-color: #8fb8d4;
-  color: #6a9aba;
+  border-color: var(--border);
+  color: var(--text-muted);
 }
 
 .card__tags {
@@ -265,6 +265,9 @@ body {
   font-size: 10px;
   color: var(--text-muted);
   opacity: 0.7;
+  pointer-events: none;
+  z-index: 1;
+  line-height: 1;
 }
 
 .cert-days--warn {
