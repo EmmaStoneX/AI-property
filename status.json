@@ -1,5 +1,5 @@
 {
-  "lastChecked": "2026-03-07T13:45:13.958Z",
+  "lastChecked": "2026-03-08T04:15:09.446Z",
   "services": {
     "ai.zxvmax.com": {
       "status": "up",
@@ -62,6 +62,10 @@
       "httpCode": 403
     },
     "cpa.zxvmax.com": {
+      "status": "up",
+      "httpCode": 200
+    },
+    "spark.us.ci": {
       "status": "up",
       "httpCode": 200
     }
