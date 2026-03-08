@@ -46,7 +46,8 @@ jobs:
             "grok.zxvmax.com": "https://grok.zxvmax.com",
             "grok2api.zxvmax.com": "https://grok.zxvmax.com/lyy0709",
             "kagi2api.zxvmax.com": "https://kagi2api.zxvmax.com",
-            "cpa.zxvmax.com": "https://cpa.zxvmax.site/management.html"
+            "cpa.zxvmax.com": "https://cpa.zxvmax.site/management.html",
+            "spark.us.ci": "https://spark.us.ci"
           };
 
           (async () => {

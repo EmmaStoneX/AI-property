@@ -214,6 +214,16 @@ body {
   cursor: help;
 }
 
+.tag--serverless {
+  border-color: #a0b4c8;
+  color: #7a94ad;
+}
+
+.tag--docker {
+  border-color: #8fb8d4;
+  color: #6a9aba;
+}
+
 .card__tags {
   display: flex;
   gap: 8px;
