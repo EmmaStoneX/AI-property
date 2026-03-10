@@ -1,106 +1,106 @@
 {
-  "lastChecked": "2026-03-09T04:22:25.200Z",
+  "lastChecked": "2026-03-10T04:13:09.348Z",
   "services": {
     "ai.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 85,
+      "certDays": 84,
       "certExpiry": "Jun  2 18:07:22 2026 GMT"
     },
     "api.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 74,
+      "certDays": 73,
       "certExpiry": "May 23 00:50:35 2026 GMT"
     },
     "chat.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 33,
+      "certDays": 32,
       "certExpiry": "Apr 11 09:27:30 2026 GMT"
     },
     "deep-research.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 77,
+      "certDays": 76,
       "certExpiry": "May 25 22:10:04 2026 GMT"
     },
     "dify.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 28,
+      "certDays": 27,
       "certExpiry": "Apr  6 05:34:54 2026 GMT"
     },
     "img.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 33,
+      "certDays": 32,
       "certExpiry": "Apr 11 15:48:29 2026 GMT"
     },
     "nano-kit.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 53,
+      "certDays": 52,
       "certExpiry": "May  1 06:34:27 2026 GMT"
     },
     "netpulse.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 46,
+      "certDays": 45,
       "certExpiry": "Apr 24 05:50:45 2026 GMT"
     },
     "ui-prompt.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 48,
+      "certDays": 47,
       "certExpiry": "Apr 26 15:14:39 2026 GMT"
     },
     "waoo.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 84,
+      "certDays": 83,
       "certExpiry": "Jun  1 09:18:30 2026 GMT"
     },
     "backend-ai.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 83,
+      "certDays": 82,
       "certExpiry": "May 31 16:10:36 2026 GMT"
     },
     "claude.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 35,
+      "certDays": 34,
       "certExpiry": "Apr 13 12:49:36 2026 GMT"
     },
     "grok.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 85,
+      "certDays": 84,
       "certExpiry": "Jun  2 23:30:50 2026 GMT"
     },
     "grok2api.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 85,
+      "certDays": 84,
       "certExpiry": "Jun  2 23:30:50 2026 GMT"
     },
     "kagi2api.zxvmax.com": {
       "status": "up",
       "httpCode": 403,
-      "certDays": 81,
+      "certDays": 80,
       "certExpiry": "May 29 15:23:52 2026 GMT"
     },
     "cpa.zxvmax.com": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 87,
+      "certDays": 86,
       "certExpiry": "Jun  4 13:59:44 2026 GMT"
     },
     "spark.us.ci": {
       "status": "up",
       "httpCode": 200,
-      "certDays": 86,
+      "certDays": 85,
       "certExpiry": "Jun  3 12:02:58 2026 GMT"
     }
   }
