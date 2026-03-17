@@ -16,3 +16,6 @@ package-lock.json
 # Markdown docs
 *.md
 !README.md
+
+# Wrangler
+.wrangler/
