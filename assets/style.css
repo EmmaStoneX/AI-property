@@ -453,3 +453,300 @@ body {
     margin-bottom: 16px;
   }
 }
+
+/* ========================================
+   导航栏管理按钮
+   ======================================== */
+.btn-admin {
+  font-family: var(--font-family);
+  font-size: 13px;
+  color: var(--text-muted);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 16px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.btn-admin:hover {
+  border-color: var(--black);
+  color: var(--black);
+}
+
+/* ========================================
+   管理面板模态框
+   ======================================== */
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-modal[hidden] {
+  display: none;
+}
+
+.admin-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.admin-panel {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  width: 560px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  padding: 32px;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+}
+
+.admin-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.admin-panel__title {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--text);
+  margin: 0 0 24px;
+  letter-spacing: 1px;
+}
+
+.admin-panel__header .admin-panel__title {
+  margin-bottom: 0;
+}
+
+/* ========================================
+   按钮
+   ======================================== */
+.btn-primary {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--white);
+  background: var(--black);
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  opacity: 0.75;
+}
+
+.btn-primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-icon {
+  font-family: var(--font-family);
+  font-size: 18px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.btn-icon:hover {
+  color: var(--black);
+}
+
+.btn-delete {
+  font-family: var(--font-family);
+  font-size: 12px;
+  color: #e57373;
+  background: none;
+  border: 1px solid #e57373;
+  border-radius: 4px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  flex-shrink: 0;
+}
+
+.btn-delete:hover {
+  background: #e57373;
+  color: var(--white);
+}
+
+.btn-delete:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   表单元素
+   ======================================== */
+.admin-input {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 14px;
+  width: 100%;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: var(--black);
+}
+
+.admin-form-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.admin-form-row .admin-input {
+  flex: 1;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.admin-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-muted);
+  cursor: pointer;
+  grid-column: span 2;
+}
+
+.admin-checkbox-label input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--black);
+}
+
+/* ========================================
+   错误提示
+   ======================================== */
+.admin-error {
+  font-size: 13px;
+  color: #e57373;
+  margin: 8px 0 0;
+}
+
+/* ========================================
+   分隔线 & 标签
+   ======================================== */
+.admin-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 24px 0;
+}
+
+.admin-section-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 12px;
+}
+
+.admin-count {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+/* ========================================
+   站点列表
+   ======================================== */
+.admin-sites-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-site-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  gap: 12px;
+}
+
+.admin-site-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.admin-site-info strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-site-info span {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================
+   管理面板响应式
+   ======================================== */
+@media (max-width: 600px) {
+  .admin-panel {
+    padding: 24px 20px;
+  }
+
+  .admin-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-form-grid input[style*="span 2"] {
+    grid-column: span 1;
+  }
+
+  .admin-checkbox-label {
+    grid-column: span 1;
+  }
+}

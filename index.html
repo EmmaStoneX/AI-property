@@ -16,6 +16,7 @@
         <li><a href="#services">服务</a></li>
         <li><a href="#about">关于</a></li>
       </ul>
+      <button id="admin-btn" class="btn-admin" aria-label="打开管理面板">管理</button>
     </nav>
   </header>
 
@@ -30,161 +31,8 @@
     <section id="services" class="services">
       <div class="container">
         <h2 class="section-title">已部署服务</h2>
-        <div class="grid">
-          <a href="https://ai.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="ai.zxvmax.com">
-            <h3>镜像站统一入口</h3>
-            <p>Claude 和 Grok 镜像站统一入口，支持多种登录方式</p>
-            <div class="card__tags">
-              <span class="tag">模型镜像</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://api.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="api.zxvmax.com">
-            <h3>LLM 中转站</h3>
-            <p>支持国内外主流大语言模型的 API 中转服务</p>
-            <div class="card__tags">
-              <span class="tag">API 服务</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--docker">Docker</span>
-              <span class="tag tag--backend">后端服务</span>
-            </div>
-          </a>
-          <a href="https://chat.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="chat.zxvmax.com">
-            <h3>口袋助手</h3>
-            <p>主聊天工具，支持多模型对话和图像上传</p>
-            <div class="card__tags">
-              <span class="tag">聊天助手</span>
-              <span class="tag tag--byk" title="Bring Your Own Key — 需要自备 API Key 使用">BYOK</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://deep-research.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="deep-research.zxvmax.com">
-            <h3>深度研究</h3>
-            <p>AI 驱动的深度研究与分析工具</p>
-            <div class="card__tags">
-              <span class="tag">研究工具</span>
-              <span class="tag tag--byk" title="Bring Your Own Key — 需要自备 API Key 使用">BYOK</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://dify.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="dify.zxvmax.com">
-            <h3>Dify 平台</h3>
-            <p>Dify 私有化部署，AI 应用开发平台</p>
-            <div class="card__tags">
-              <span class="tag">AI 平台</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--docker">Docker</span>
-            </div>
-          </a>
-          <a href="https://img.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="img.zxvmax.com">
-            <h3>AI 生图</h3>
-            <p>AI 图像生成工具，对接大香蕉2模型</p>
-            <div class="card__tags">
-              <span class="tag">创意工具</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://nano-kit.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="nano-kit.zxvmax.com">
-            <h3>Nano Kit</h3>
-            <p>AI 绘图工作台，绘图工具套件</p>
-            <div class="card__tags">
-              <span class="tag">创意工具</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://netpulse.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="netpulse.zxvmax.com">
-            <h3>NetPulse</h3>
-            <p>AI 互联网事件实时分析器（开源项目）</p>
-            <div class="card__tags">
-              <span class="tag">研究工具</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://ui-prompt.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="ui-prompt.zxvmax.com">
-            <h3>UI Style Prompt</h3>
-            <p>AI UI 设计风格提示词库</p>
-            <div class="card__tags">
-              <span class="tag">开发工具</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <a href="https://waoo.zxvmax.com" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="waoo.zxvmax.com">
-            <h3>Waoo Studio</h3>
-            <p>AI 影视/动漫制作平台，支持注册使用</p>
-            <div class="card__tags">
-              <span class="tag">创意工具</span>
-              <span class="tag tag--byk" title="Bring Your Own Key — 需要自备 API Key 使用">BYOK</span>
-              <span class="tag tag--docker">Docker</span>
-            </div>
-          </a>
-          <div class="card card--backend" data-domain="backend-ai.zxvmax.com">
-            <h3>AI 后端</h3>
-            <p>Claude 镜像站后端服务</p>
-            <div class="card__tags">
-              <span class="tag">API 服务</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </div>
-          <div class="card card--backend" data-domain="claude.zxvmax.com">
-            <h3>Claude 镜像</h3>
-            <p>Claude 镜像站主站，从 AI 入口跳转</p>
-            <div class="card__tags">
-              <span class="tag">模型镜像</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--docker">Docker</span>
-            </div>
-          </div>
-          <div class="card card--backend" data-domain="grok.zxvmax.com">
-            <h3>Grok 镜像</h3>
-            <p>Grok 镜像站主站，从 AI 入口跳转</p>
-            <div class="card__tags">
-              <span class="tag">模型镜像</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--docker">Docker</span>
-            </div>
-          </div>
-          <a href="https://grok.zxvmax.com/lyy0709" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="grok2api.zxvmax.com">
-            <h3>Grok2API</h3>
-            <p>Grok 模型 API 代理服务</p>
-            <div class="card__tags">
-              <span class="tag">API 服务</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
-          <div class="card card--backend" data-domain="kagi2api.zxvmax.com">
-            <h3>Kagi2API</h3>
-            <p>Kagi 搜索 API 代理服务</p>
-            <div class="card__tags">
-              <span class="tag">API 服务</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </div>
-          <a href="https://cpa.zxvmax.site/management.html" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="cpa.zxvmax.com">
-            <h3>CLI Proxy</h3>
-            <p>CLI 代理，中转 GPT 模型</p>
-            <div class="card__tags">
-              <span class="tag">API 服务</span>
-              <span class="tag tag--backend">后端服务</span>
-              <span class="tag tag--docker">Docker</span>
-            </div>
-          </a>
-          <a href="https://spark.us.ci" target="_blank" rel="noopener noreferrer" class="card card--accessible" data-domain="spark.us.ci">
-            <h3>Spark Mail</h3>
-            <p>临时邮箱服务</p>
-            <div class="card__tags">
-              <span class="tag">工具</span>
-              <span class="tag tag--ready">开箱即用</span>
-              <span class="tag tag--serverless">Serverless</span>
-            </div>
-          </a>
+        <div id="services-grid" class="grid">
+          <!-- 由 JS 动态渲染 -->
         </div>
       </div>
     </section>
@@ -219,34 +67,331 @@
     </div>
   </footer>
 
+  <!-- 管理面板模态框 -->
+  <div id="admin-modal" class="admin-modal" hidden aria-modal="true" role="dialog" aria-labelledby="admin-modal-title">
+    <div class="admin-overlay" id="admin-overlay"></div>
+    <div class="admin-panel">
+      <!-- 密码验证区 -->
+      <div id="admin-auth-section">
+        <h2 id="admin-modal-title" class="admin-panel__title">管理面板</h2>
+        <div class="admin-form-row">
+          <input
+            type="password"
+            id="admin-password-input"
+            class="admin-input"
+            placeholder="管理密码"
+            autocomplete="current-password"
+          >
+          <button id="admin-login-btn" class="btn-primary">进入</button>
+        </div>
+        <p id="admin-auth-error" class="admin-error" hidden></p>
+      </div>
+
+      <!-- 主管理区（验证后显示） -->
+      <div id="admin-main-section" hidden>
+        <div class="admin-panel__header">
+          <h2 id="admin-modal-title" class="admin-panel__title">管理面板</h2>
+          <button id="admin-close-btn" class="btn-icon" aria-label="关闭管理面板">✕</button>
+        </div>
+
+        <!-- 新增表单 -->
+        <form id="admin-add-form" class="admin-add-form">
+          <h3 class="admin-section-label">新增站点</h3>
+          <div class="admin-form-grid">
+            <input type="text" id="f-domain" class="admin-input" placeholder="域名（如 example.com）" required>
+            <input type="text" id="f-name" class="admin-input" placeholder="显示名称" required>
+            <input type="text" id="f-desc" class="admin-input" placeholder="描述" style="grid-column: span 2;">
+            <input type="url" id="f-url" class="admin-input" placeholder="链接 URL（不可访问的服务留空）" style="grid-column: span 2;">
+            <input type="text" id="f-tags" class="admin-input" placeholder="标签，逗号分隔（如 开箱即用,Serverless）" style="grid-column: span 2;">
+            <label class="admin-checkbox-label">
+              <input type="checkbox" id="f-accessible" checked>
+              <span>可点击访问</span>
+            </label>
+          </div>
+          <p id="admin-add-error" class="admin-error" hidden></p>
+          <button type="submit" class="btn-primary">添加站点</button>
+        </form>
+
+        <div class="admin-divider"></div>
+
+        <!-- 站点列表 -->
+        <h3 class="admin-section-label">已有站点 <span id="admin-sites-count" class="admin-count"></span></h3>
+        <ul id="admin-sites-list" class="admin-sites-list"></ul>
+      </div>
+    </div>
+  </div>
+
   <script>
-    fetch('status.json')
-      .then(r => r.json())
-      .then(data => {
-        document.querySelectorAll('.card[data-domain]').forEach(card => {
-          const domain = card.dataset.domain;
-          const info = data.services && data.services[domain];
-          if (!info) return;
-          // Create overlay container (not a flex item)
-          const overlay = document.createElement('div');
-          overlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none';
-          // Status dot
-          const dot = document.createElement('span');
-          dot.className = 'status-dot status-dot--' + info.status;
-          dot.title = info.status === 'up' ? '服务正常' : '服务异常 (' + info.httpCode + ')';
-          overlay.appendChild(dot);
-          // Cert days
-          if (info.certDays != null && info.certDays >= 0) {
-            const cert = document.createElement('span');
-            cert.className = 'cert-days' + (info.certDays <= 14 ? ' cert-days--warn' : '');
-            cert.textContent = info.certDays + 'd';
-            cert.title = '证书剩余 ' + info.certDays + ' 天' + (info.certExpiry ? '（到期：' + info.certExpiry + '）' : '');
-            overlay.appendChild(cert);
-          }
-          card.appendChild(overlay);
+    // ─── 标签 → CSS class 映射 ────────────────────────────────────
+    const TAG_CLASS = {
+      '开箱即用': 'tag--ready',
+      'Serverless': 'tag--serverless',
+      'Docker': 'tag--docker',
+      '后端服务': 'tag--backend',
+      'BYOK': 'tag--byk',
+    };
+
+    // ─── 渲染单张卡片 ────────────────────────────────────────────
+    function createCard(site) {
+      const el = site.accessible ? document.createElement('a') : document.createElement('div');
+      if (site.accessible && site.url) {
+        el.href = site.url;
+        el.target = '_blank';
+        el.rel = 'noopener noreferrer';
+        el.className = 'card card--accessible';
+      } else {
+        el.className = 'card card--backend';
+      }
+      el.dataset.domain = site.domain;
+
+      const tagsHtml = (site.tags || []).map(t => {
+        const cls = TAG_CLASS[t] ? ` ${TAG_CLASS[t]}` : '';
+        const extra = t === 'BYOK' ? ' title="Bring Your Own Key — 需要自备 API Key 使用"' : '';
+        return `<span class="tag${cls}"${extra}>${t}</span>`;
+      }).join('');
+
+      el.innerHTML = `<h3>${site.name}</h3><p>${site.desc || ''}</p><div class="card__tags">${tagsHtml}</div>`;
+      return el;
+    }
+
+    // ─── 加载站点数据 ────────────────────────────────────────────
+    async function loadSites() {
+      try {
+        const r = await fetch('/api/sites');
+        if (!r.ok) throw new Error('api error');
+        return await r.json();
+      } catch {
+        // 回退到静态 sites.json（本地开发）
+        try {
+          const r = await fetch('sites.json');
+          return await r.json();
+        } catch {
+          return [];
+        }
+      }
+    }
+
+    // ─── 渲染网格 ────────────────────────────────────────────────
+    let currentSites = [];
+
+    async function renderGrid() {
+      const grid = document.getElementById('services-grid');
+      grid.innerHTML = '';
+      currentSites = await loadSites();
+      currentSites.forEach(site => grid.appendChild(createCard(site)));
+      applyStatus();
+      renderAdminList();
+    }
+
+    // ─── 状态点（status.json）────────────────────────────────────
+    function applyStatus() {
+      fetch('status.json')
+        .then(r => r.json())
+        .then(data => {
+          document.querySelectorAll('.card[data-domain]').forEach(card => {
+            const domain = card.dataset.domain;
+            const info = data.services && data.services[domain];
+            if (!info) return;
+            const overlay = document.createElement('div');
+            overlay.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none';
+            const dot = document.createElement('span');
+            dot.className = 'status-dot status-dot--' + info.status;
+            dot.title = info.status === 'up' ? '服务正常' : '服务异常 (' + info.httpCode + ')';
+            overlay.appendChild(dot);
+            if (info.certDays != null && info.certDays >= 0) {
+              const cert = document.createElement('span');
+              cert.className = 'cert-days' + (info.certDays <= 14 ? ' cert-days--warn' : '');
+              cert.textContent = info.certDays + 'd';
+              cert.title = '证书剩余 ' + info.certDays + ' 天' + (info.certExpiry ? '（到期：' + info.certExpiry + '）' : '');
+              overlay.appendChild(cert);
+            }
+            card.appendChild(overlay);
+          });
+        })
+        .catch(() => {});
+    }
+
+    // ─── 管理面板 ────────────────────────────────────────────────
+    const modal = document.getElementById('admin-modal');
+    const authSection = document.getElementById('admin-auth-section');
+    const mainSection = document.getElementById('admin-main-section');
+    const authError = document.getElementById('admin-auth-error');
+    const addError = document.getElementById('admin-add-error');
+
+    let sessionPassword = '';
+
+    function openModal() {
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      // 重置到密码输入状态
+      authSection.hidden = false;
+      mainSection.hidden = true;
+      authError.hidden = true;
+      addError.hidden = true;
+      document.getElementById('admin-password-input').value = '';
+      setTimeout(() => document.getElementById('admin-password-input').focus(), 50);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      sessionPassword = '';
+    }
+
+    function showError(el, msg) {
+      el.textContent = msg;
+      el.hidden = false;
+    }
+
+    // ─── 密码验证（通过 DELETE __verify__ 测试）────────────────
+    async function verifyPassword(pwd) {
+      try {
+        const r = await fetch('/api/sites', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pwd, domain: '__verify__' }),
         });
-      })
-      .catch(() => {});
+        return r.status !== 401;
+      } catch {
+        return false;
+      }
+    }
+
+    // ─── 渲染管理列表 ────────────────────────────────────────────
+    function renderAdminList() {
+      const list = document.getElementById('admin-sites-list');
+      const countEl = document.getElementById('admin-sites-count');
+      list.innerHTML = '';
+      countEl.textContent = `(${currentSites.length})`;
+      currentSites.forEach(site => {
+        const li = document.createElement('li');
+        li.className = 'admin-site-item';
+        li.innerHTML = `
+          <span class="admin-site-info">
+            <strong>${site.name}</strong>
+            <span>${site.domain}</span>
+          </span>
+          <button class="btn-delete" data-domain="${site.domain}" aria-label="删除 ${site.name}">删除</button>
+        `;
+        li.querySelector('.btn-delete').addEventListener('click', handleDelete);
+        list.appendChild(li);
+      });
+    }
+
+    // ─── 删除站点 ────────────────────────────────────────────────
+    async function handleDelete(e) {
+      const btn = e.currentTarget;
+      const domain = btn.dataset.domain;
+      const site = currentSites.find(s => s.domain === domain);
+      if (!confirm(`确认删除「${site ? site.name : domain}」？`)) return;
+
+      btn.disabled = true;
+      btn.textContent = '删除中…';
+
+      try {
+        const r = await fetch('/api/sites', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: sessionPassword, domain }),
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          alert(data.error || '删除失败');
+          btn.disabled = false;
+          btn.textContent = '删除';
+          return;
+        }
+        await renderGrid();
+      } catch {
+        alert('网络错误，请重试');
+        btn.disabled = false;
+        btn.textContent = '删除';
+      }
+    }
+
+    // ─── 新增站点 ────────────────────────────────────────────────
+    document.getElementById('admin-add-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      addError.hidden = true;
+
+      const domain = document.getElementById('f-domain').value.trim();
+      const name = document.getElementById('f-name').value.trim();
+      const desc = document.getElementById('f-desc').value.trim();
+      const url = document.getElementById('f-url').value.trim();
+      const tagsRaw = document.getElementById('f-tags').value.trim();
+      const accessible = document.getElementById('f-accessible').checked;
+      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+      const submitBtn = e.target.querySelector('[type=submit]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = '添加中…';
+
+      try {
+        const r = await fetch('/api/sites', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            password: sessionPassword,
+            site: { domain, name, desc, url: url || null, accessible, tags },
+          }),
+        });
+        const data = await r.json();
+        if (!r.ok) {
+          showError(addError, data.error || '添加失败');
+          submitBtn.disabled = false;
+          submitBtn.textContent = '添加站点';
+          return;
+        }
+        e.target.reset();
+        document.getElementById('f-accessible').checked = true;
+        await renderGrid();
+      } catch {
+        showError(addError, '网络错误，请重试');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '添加站点';
+      }
+    });
+
+    // ─── 事件绑定 ────────────────────────────────────────────────
+    document.getElementById('admin-btn').addEventListener('click', openModal);
+    document.getElementById('admin-close-btn').addEventListener('click', closeModal);
+    document.getElementById('admin-overlay').addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+
+    document.getElementById('admin-login-btn').addEventListener('click', async () => {
+      const pwd = document.getElementById('admin-password-input').value;
+      if (!pwd) { showError(authError, '请输入密码'); return; }
+
+      const btn = document.getElementById('admin-login-btn');
+      btn.disabled = true;
+      btn.textContent = '验证中…';
+      authError.hidden = true;
+
+      const ok = await verifyPassword(pwd);
+      btn.disabled = false;
+      btn.textContent = '进入';
+
+      if (!ok) {
+        showError(authError, '密码错误');
+        return;
+      }
+
+      sessionPassword = pwd;
+      authSection.hidden = true;
+      mainSection.hidden = false;
+      renderAdminList();
+    });
+
+    // 密码框回车触发登录
+    document.getElementById('admin-password-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('admin-login-btn').click();
+    });
+
+    // ─── 初始化 ────────────────────────────────────────────────
+    renderGrid();
   </script>
 </body>
 </html>
