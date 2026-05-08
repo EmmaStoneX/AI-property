@@ -101,6 +101,27 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
+.hero__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.hero__brand-logo {
+  width: clamp(180px, 22vw, 260px);
+  aspect-ratio: 1;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.hero__brand-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.42);
+}
+
 .hero__title {
   font-size: clamp(32px, 6vw, 56px);
   font-weight: 300;
@@ -431,6 +452,16 @@ body {
 
   .hero {
     padding: var(--spacing-xs) 0;
+  }
+
+  .hero__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+
+  .hero__brand-logo {
+    width: min(68vw, 220px);
   }
 
   .services {
