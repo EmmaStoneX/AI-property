@@ -100,7 +100,7 @@
 
         <!-- 新增表单 -->
         <form id="admin-add-form" class="admin-add-form">
-          <h3 class="admin-section-label">新增站点</h3>
+          <h3 id="admin-form-title" class="admin-section-label">新增站点</h3>
           <div class="admin-form-grid">
             <input type="text" id="f-domain" class="admin-input" placeholder="域名（如 example.com）" required>
             <input type="text" id="f-name" class="admin-input" placeholder="显示名称" required>
@@ -113,7 +113,10 @@
             </label>
           </div>
           <p id="admin-add-error" class="admin-error" hidden></p>
-          <button type="submit" class="btn-primary">添加站点</button>
+          <div class="admin-form-actions">
+            <button type="submit" class="btn-primary">添加站点</button>
+            <button type="button" id="admin-cancel-edit-btn" class="btn-secondary" hidden>取消编辑</button>
+          </div>
         </form>
 
         <div class="admin-divider"></div>
@@ -221,8 +224,13 @@
     const mainSection = document.getElementById('admin-main-section');
     const authError = document.getElementById('admin-auth-error');
     const addError = document.getElementById('admin-add-error');
+    const addForm = document.getElementById('admin-add-form');
+    const formTitle = document.getElementById('admin-form-title');
+    const submitBtn = addForm.querySelector('[type=submit]');
+    const cancelEditBtn = document.getElementById('admin-cancel-edit-btn');
 
     let sessionPassword = '';
+    let editingDomain = '';
 
     function openModal() {
       modal.hidden = false;
@@ -232,6 +240,7 @@
       mainSection.hidden = true;
       authError.hidden = true;
       addError.hidden = true;
+      resetAdminForm();
       document.getElementById('admin-password-input').value = '';
       setTimeout(() => document.getElementById('admin-password-input').focus(), 50);
     }
@@ -245,6 +254,42 @@
     function showError(el, msg) {
       el.textContent = msg;
       el.hidden = false;
+    }
+
+    function getAdminFormSite() {
+      const domain = document.getElementById('f-domain').value.trim();
+      const name = document.getElementById('f-name').value.trim();
+      const desc = document.getElementById('f-desc').value.trim();
+      const url = document.getElementById('f-url').value.trim();
+      const tagsRaw = document.getElementById('f-tags').value.trim();
+      const accessible = document.getElementById('f-accessible').checked;
+      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+
+      return { domain, name, desc, url: url || null, accessible, tags };
+    }
+
+    function fillAdminForm(site) {
+      document.getElementById('f-domain').value = site.domain || '';
+      document.getElementById('f-name').value = site.name || '';
+      document.getElementById('f-desc').value = site.desc || '';
+      document.getElementById('f-url').value = site.url || '';
+      document.getElementById('f-tags').value = (site.tags || []).join(', ');
+      document.getElementById('f-accessible').checked = Boolean(site.accessible);
+    }
+
+    function setFormMode(domain) {
+      editingDomain = domain || '';
+      formTitle.textContent = editingDomain ? '编辑站点' : '新增站点';
+      submitBtn.textContent = editingDomain ? '保存修改' : '添加站点';
+      cancelEditBtn.hidden = !editingDomain;
+    }
+
+    function resetAdminForm() {
+      addForm.reset();
+      document.getElementById('f-accessible').checked = true;
+      addError.hidden = true;
+      submitBtn.disabled = false;
+      setFormMode('');
     }
 
     // ─── 密码验证（通过 DELETE __verify__ 测试）────────────────
@@ -275,11 +320,27 @@
             <strong>${site.name}</strong>
             <span>${site.domain}</span>
           </span>
-          <button class="btn-delete" data-domain="${site.domain}" aria-label="删除 ${site.name}">删除</button>
+          <span class="admin-site-actions">
+            <button class="btn-edit" data-domain="${site.domain}" aria-label="编辑 ${site.name}">编辑</button>
+            <button class="btn-delete" data-domain="${site.domain}" aria-label="删除 ${site.name}">删除</button>
+          </span>
         `;
+        li.querySelector('.btn-edit').addEventListener('click', handleEdit);
         li.querySelector('.btn-delete').addEventListener('click', handleDelete);
         list.appendChild(li);
       });
+    }
+
+    // ─── 编辑站点 ────────────────────────────────────────────────
+    function handleEdit(e) {
+      const domain = e.currentTarget.dataset.domain;
+      const site = currentSites.find(s => s.domain === domain);
+      if (!site) return;
+
+      fillAdminForm(site);
+      setFormMode(domain);
+      addError.hidden = true;
+      document.getElementById('f-name').focus();
     }
 
     // ─── 删除站点 ────────────────────────────────────────────────
@@ -314,47 +375,42 @@
     }
 
     // ─── 新增站点 ────────────────────────────────────────────────
-    document.getElementById('admin-add-form').addEventListener('submit', async (e) => {
+    addForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       addError.hidden = true;
 
-      const domain = document.getElementById('f-domain').value.trim();
-      const name = document.getElementById('f-name').value.trim();
-      const desc = document.getElementById('f-desc').value.trim();
-      const url = document.getElementById('f-url').value.trim();
-      const tagsRaw = document.getElementById('f-tags').value.trim();
-      const accessible = document.getElementById('f-accessible').checked;
-      const tags = tagsRaw ? tagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [];
+      const site = getAdminFormSite();
+      const isEditing = Boolean(editingDomain);
 
-      const submitBtn = e.target.querySelector('[type=submit]');
       submitBtn.disabled = true;
-      submitBtn.textContent = '添加中…';
+      submitBtn.textContent = isEditing ? '保存中…' : '添加中…';
 
       try {
         const r = await fetch('/api/sites', {
-          method: 'POST',
+          method: isEditing ? 'PUT' : 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             password: sessionPassword,
-            site: { domain, name, desc, url: url || null, accessible, tags },
+            domain: editingDomain || undefined,
+            site,
           }),
         });
         const data = await r.json();
         if (!r.ok) {
-          showError(addError, data.error || '添加失败');
-          submitBtn.disabled = false;
-          submitBtn.textContent = '添加站点';
+          showError(addError, data.error || (isEditing ? '修改失败' : '添加失败'));
           return;
         }
-        e.target.reset();
-        document.getElementById('f-accessible').checked = true;
+        resetAdminForm();
         await renderGrid();
       } catch {
         showError(addError, '网络错误，请重试');
+      } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = '添加站点';
+        submitBtn.textContent = editingDomain ? '保存修改' : '添加站点';
       }
     });
+
+    cancelEditBtn.addEventListener('click', resetAdminForm);
 
     // ─── 事件绑定 ────────────────────────────────────────────────
     document.getElementById('admin-btn').addEventListener('click', openModal);

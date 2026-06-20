@@ -21,7 +21,7 @@ const DEFAULT_SITES = [
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
 
@@ -91,6 +91,53 @@ export async function onRequest(context) {
       accessible: Boolean(site.accessible),
       tags: Array.isArray(site.tags) ? site.tags : [],
     });
+
+    await saveSites(env, sites);
+    return json({ ok: true });
+  }
+
+  // PUT：修改站点
+  if (method === 'PUT') {
+    let body;
+    try {
+      body = await request.json();
+    } catch {
+      return json({ error: '无效 JSON' }, 400);
+    }
+
+    const { password, domain, site } = body;
+
+    if (!checkPassword(env, password)) {
+      return json({ error: '密码错误' }, 401);
+    }
+
+    if (!domain) {
+      return json({ error: '缺少必填字段：domain' }, 400);
+    }
+
+    if (!site || !site.domain || !site.name) {
+      return json({ error: '缺少必填字段：domain、name' }, 400);
+    }
+
+    const sites = await getSites(env);
+    const index = sites.findIndex(s => s.domain === domain);
+
+    if (index === -1) {
+      return json({ error: `站点 ${domain} 不存在` }, 404);
+    }
+
+    if (site.domain !== domain && sites.some(s => s.domain === site.domain)) {
+      return json({ error: `域名 ${site.domain} 已存在` }, 409);
+    }
+
+    sites[index] = {
+      domain: site.domain,
+      name: site.name,
+      desc: site.desc || '',
+      url: site.url || null,
+      accessible: Boolean(site.accessible),
+      tags: Array.isArray(site.tags) ? site.tags : [],
+    };
 
     await saveSites(env, sites);
     return json({ ok: true });
